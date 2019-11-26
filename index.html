@@ -4,7 +4,7 @@
         <title></title>
     </head>
     <body>
-        <div id="quiz" class="container">
+        <div id="quiz" class="container quiz">
                 <!-- quiz questions -->
         </div>
         <!-- Scripts -->
@@ -61,15 +61,23 @@
                     quizStr += `
                     <form>
                         <h1>${question.q}</h1>
+                        <div class="alert"> - </div>
                         <ul>
                             ${answerStr}
                         </ul>
+                        <button type="submit">Submit</button>
                     </form>
                     `
-                } )
+                })
 
                 quizEl.innerHTML = quizStr
-            }
+
+                quizEl.addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    // list all of the forms in this e.target
+
+                })
+            } // end init()
 
             init()
         </script>
