@@ -46,12 +46,23 @@
 
                 let quizStr = ''
 
-                questions.forEach( function(question) {
+                questions.forEach( function(question, qIndex) {
+                    let answerStr = ''
+                    question.a.forEach(function(answer, aIndex) {
+                        answerStr += `
+                        <li>
+                            <label>
+                                <input type="radio" name="question-${qIndex}">
+                                ${answer}
+                            </label>
+                        </li>
+                        `
+                    })
                     quizStr += `
                     <form>
                         <h1>${question.q}</h1>
                         <ul>
-                        
+                            ${answerStr}
                         </ul>
                     </form>
                     `
