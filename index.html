@@ -74,7 +74,14 @@
           const selectedInput = e.target.querySelector(
             "input[type=radio]:checked"
           );
-          console.log(selectedInput);
+          const alert = e.target.querySelector("div.alert");
+          if (selectedInput === null) {
+            alert.innerHTML = "Please select an answer.";
+          } else if (selectedInput.dataset.correct === "true") {
+            alert.innerHTML = "That's correct!";
+          } else {
+            alert.innerHTML = "Oops! Try again.";
+          }
         });
       } // end init()
 
