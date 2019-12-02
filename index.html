@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <div id="quiz" class="container quiz">
-                <!-- quiz questions -->
-        </div>
-        <!-- Scripts -->
-        <script>
-            const questions = [
-                {
-                    q: 'What is Waldeinsamkeit?',
-                    a: [
-                        'The feeling of solitude...',
-                        'A wide belt worn by cowboys',
-                        'A pastry from the foot hills of Minesota'
-                    ],
-                    correct: 0
-                },
-                {
-                    q: 'Where does Ike go to school?',
-                    a: [
-                        'University of Madison Wisconsin',
-                        'UCLA',
-                        'Make School'
-                    ],
-                    correct: 2
-                },
-                {
-                    q: "What is Ike's Favorite Food",
-                    a: [
-                        'Pizza',
-                        'Tacos',
-                        'Burgers'
-                    ],
-                    correct: 1
-                },
-            ]
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div id="quiz" class="container quiz">
+      <!-- quiz questions -->
+    </div>
+    <!-- Scripts -->
+    <script>
+      const questions = [
+        {
+          q: "What is Waldeinsamkeit?",
+          a: [
+            "The feeling of solitude...",
+            "A wide belt worn by cowboys",
+            "A pastry from the foot hills of Minesota"
+          ],
+          correct: 0
+        },
+        {
+          q: "Where does Ike go to school?",
+          a: ["University of Madison Wisconsin", "UCLA", "Make School"],
+          correct: 2
+        },
+        {
+          q: "What is Ike's Favorite Food",
+          a: ["Pizza", "Tacos", "Burgers"],
+          correct: 1
+        }
+      ];
 
-            function init() {
-                const quizEl = document.getElementById('quiz')
+      function init() {
+        const quizEl = document.getElementById("quiz");
 
-                // loop through the array of questions
+        // loop through the array of questions
 
-                let quizStr = ''
+        let quizStr = "";
 
-                questions.forEach( function(question, qIndex) {
-                    let answerStr = ''
-                    question.a.forEach(function(answer, aIndex) {
-                        answerStr += `
+        questions.forEach(function(question, qIndex) {
+          let answerStr = "";
+          question.a.forEach(function(answer, aIndex) {
+            answerStr += `
                         <li>
                             <label>
-                                <input type="radio" name="question-${qIndex}">
+                                <input
+                                type="radio"
+                                name="question-${qIndex}"
+                                data-correct="${question.correct === aIndex}"
+                                >
                                 ${answer}
                             </label>
                         </li>
-                        `
-                    })
-                    quizStr += `
+                        `;
+          });
+          quizStr += `
                     <form>
                         <h1>${question.q}</h1>
                         <div class="alert"> - </div>
@@ -67,19 +63,21 @@
                         </ul>
                         <button type="submit">Submit</button>
                     </form>
-                    `
-                })
+                    `;
+        });
 
-                quizEl.innerHTML = quizStr
+        quizEl.innerHTML = quizStr;
 
-                quizEl.addEventListener('submit', function(e) {
-                    e.preventDefault()
-                    // list all of the forms in this e.target
+        quizEl.addEventListener("submit", function(e) {
+          e.preventDefault();
+          const selectedInput = e.target.querySelector(
+            "input[type=radio]:checked"
+          );
+          console.log(selectedInput);
+        });
+      } // end init()
 
-                })
-            } // end init()
-
-            init()
-        </script>
-    </body>
+      init();
+    </script>
+  </body>
 </html>
