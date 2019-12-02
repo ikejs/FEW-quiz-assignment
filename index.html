@@ -40,9 +40,10 @@
 
         questions.forEach(function(question, qIndex) {
           let answerStr = "";
+          const answerOrder = randomRange(question.a.length);
           question.a.forEach(function(answer, aIndex) {
             answerStr += `
-                        <li style="order: ">
+                        <li style="order: ${answerOrder[aIndex]}">
                             <label>
                                 <input
                                 type="radio"
